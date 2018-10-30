@@ -2,10 +2,29 @@
 
 const assert = require("assert");
 
+
+// const array1 = ["#", "#", " ", "#"];
+// console.log(array1.toString());
+
+
 const gridCreator = (symbol, size) => {
 
-	const lineUn = " " + symbol + " " + symbol + " " + symbol +" " + symbol + "\n";
-	const lineEv = symbol + " " + symbol + " " + symbol + " " + symbol + " " + "\n";
+	const lineUn = " " + symbol + " " + symbol + " " + symbol + " " + symbol       + "\n";
+	const lineEv =       symbol + " " + symbol + " " + symbol + " " + symbol + " " + "\n";
+	// -> spread(...) const lineEv = " " (?is there a \thing for a space?), ...lineUn, " ";
+
+/* function tester () {
+	print element * a specified number of times, then add a line break, then
+	print element differently
+	make the whole thing one simple array, then console.log the result of this array(maybe array.toString needed). 
+
+	create arr with one symbol, then change, the symbol  / the line with array methods. üben: array to string. dann array changen. changen ohne loop und ohne mutation 
+
+} */ 
+
+const lineUnArr = [symbol];
+console.log("Here it comes:" + "\n" + lineUnArr);
+
 	let storer = lineUn;
 	let line;
 
@@ -24,6 +43,9 @@ const gridCreator = (symbol, size) => {
 
 	return storer;
 }
+
+// kalender, poststation 110, urlaub eintragen in Bamboo mit Hinweis, das es variiert je nach Start wie besprochen mit SAC und MST.
+// writing it witout loops, without mutating. Did mutate so far?
 
 // tests
 const expected1 = " ! ! ! !" + "\n";  // one line grid
