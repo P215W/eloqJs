@@ -1,24 +1,22 @@
-// dealing with ch.4, ex. "Reversing an array" without using the reverse() method:
+// Dealing with ch.4, ex."Reversing an array" without using the reverse() method:
 
 "use strict";
 // Creating a new array, i.e. the non-mutating way:
-const array = ["1", "2", "3", 4,5,6, true, false];
-const reverseArray = (anyArray) => {
+const reverseArray = (array) => {
     const arrayNew = [];
-    for (let i=1; i<=anyArray.length; i++) {
-        arrayNew.push(anyArray[anyArray.length-i]);
+    for (let i = array.length-1; i>=0; i--) {
+        arrayNew.push(array[i]);
     }
     return arrayNew;
 };
-console.log("New array: ", reverseArray(array));
+console.log("New array:", reverseArray(["1", "2", 3, 4, true, false]));
 
-
-// Mutating the original array:
-const reverseArrayInPlace = (anyArr) => {
-    for (let i=1; i<=anyArr.length; i++) {
-        anyArr.splice(i-1, 0, anyArr[anyArr.length-1]);
-        anyArr.pop();
+// Mutating original array:
+const reverseArrayInPlace = (array) => {
+    for (let i=array.length-1; i>=0; i--) {
+        array.splice(array.length-1-i, 0, array[array.length-1]);
+        array.pop();
     }
-    return anyArr; 
+    return array;
 };
-console.log("Mutated array: ", reverseArrayInPlace(array));
+console.log("Mutated array:", reverseArrayInPlace(["1", "2", 3, 4, true, false]));
