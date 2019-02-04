@@ -27,24 +27,20 @@ const allTables = activities.map(currActivity => {
     if (!jlog[i].squirrel && !jlog[i].events.includes(currActivity)) {
       ctn0++;
     }
-
     if (!jlog[i].squirrel && jlog[i].events.includes(currActivity)) {
       ctn1++;
     }
-
     if (jlog[i].squirrel && !jlog[i].events.includes(currActivity)) {
       ctn2++;
     }
-
     if (jlog[i].squirrel && jlog[i].events.includes(currActivity)) {
       ctn3++;
     }
   }
-  const activityTable = {
+  return {
     table: [ctn0, ctn1, ctn2, ctn3],
     activity: currActivity
   };
-  return activityTable;
 });
 
 // calculates a phi value for each activity depending on its resp. 4-item table:
