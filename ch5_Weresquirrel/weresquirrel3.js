@@ -41,19 +41,14 @@ const allTables = activities.map(activity => {
   };
 });
 
-// calculates a phi value for each activity depending on its resp. 4-item table:
+// calc.phi value for each activity depending on its 4-number-table,'td' means table Data from 0-3
 const phiResultsArray = allTables.map(currItem => {
-  let table = currItem.table;
+  const [td0, td1, td2, td3] = currItem.table;
   return {
     event: currItem.activity,
     result:
-      (table[3] * table[0] - table[2] * table[1]) /
-      Math.sqrt(
-        (table[0] + table[1]) *
-          (table[2] + table[3]) *
-          (table[0] + table[2]) *
-          (table[1] + table[3])
-      )
+      (td3 * td0 - td2 * td1) /
+      Math.sqrt((td0 + td1) * (td2 + td3) * (td0 + td2) * (td1 + td3))
   };
 });
 
