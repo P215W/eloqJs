@@ -3,43 +3,41 @@ const JOURNAL = require("./journal.json");
 const jlog = JOURNAL.JOURNAL;
 const R = require("ramda");
 
-// extracts all event values from JOURNAL.events:
+// extracts all events from JOURNAL.events:
 const allEvents = jlog.map(day => day.events);
 const allEventsFlat = R.flatten(allEvents);
 
 // drops repeats in allEvents:
 const activities = allEventsFlat.reduce((events, item) => {
-  if (events) {
-    if (!events.includes(item)) {
-      events = [...events, item];
-    }
+  if (!events.includes(item)) {
+    events = [...events, item];
   }
   return events;
 }, []);
 
 // creates a 4-item table for every activity value in JOURNAL:
-const allTables = activities.map(currActivity => {
+const allTables = activities.map(activity => {
   let ctn0 = 0,
     ctn1 = 0,
     ctn2 = 0,
     ctn3 = 0;
   for (let i = 0; i <= jlog.length - 1; i++) {
-    if (!jlog[i].squirrel && !jlog[i].events.includes(currActivity)) {
+    if (!jlog[i].squirrel && !jlog[i].events.includes(activity)) {
       ctn0++;
     }
-    if (!jlog[i].squirrel && jlog[i].events.includes(currActivity)) {
+    if (!jlog[i].squirrel && jlog[i].events.includes(activity)) {
       ctn1++;
     }
-    if (jlog[i].squirrel && !jlog[i].events.includes(currActivity)) {
+    if (jlog[i].squirrel && !jlog[i].events.includes(activity)) {
       ctn2++;
     }
-    if (jlog[i].squirrel && jlog[i].events.includes(currActivity)) {
+    if (jlog[i].squirrel && jlog[i].events.includes(activity)) {
       ctn3++;
     }
   }
   return {
     table: [ctn0, ctn1, ctn2, ctn3],
-    activity: currActivity
+    activity: activity
   };
 });
 
